@@ -1,0 +1,164 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct Node{
+     int data;
+     Node* left;
+     Node* right;
+};
+Node* insertionNode(Node* root,int data){
+     if(root == NULL){
+          root = new Node{data,NULL,NULL};
+          return root;
+     }
+      if(data > root->data){
+           root->right = insertionNode(root->right,data);
+      }
+      else if(data < root->data){
+          root->left = insertionNode(root->left,data);
+      }
+      return root;
+}
+void preorder(Node* root){
+ if(root==NULL)return;
+ cout<<root->data<<" ";
+ preorder(root->left);
+ preorder(root->right);
+}
+ 
+ void inorder(Node* root){
+ if(root==NULL)return;
+ inorder(root->left);
+ cout<<root->data<<" ";
+ inorder(root->right);
+ }
+ 
+ void postorder(Node* root){
+ if(root==NULL)return;
+ postorder(root->left);
+ postorder(root->right);
+ cout<<root->data<<" ";
+ }
+
+int main()
+{
+  int n;
+  cin>>n;
+  while(n--){
+      Node* root=NULL;
+      int t,a;
+      cin>>t;
+      for(int i=0;i<t;i++){
+          cin>>a;
+          root=insertionNode(root,a);
+      }
+      preorder(root);
+      cout<<endl;
+      inorder(root);
+      cout<<endl;
+      postorder(root);
+      cout<<endl<<endl;
+  }
+      return 0;
+  }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

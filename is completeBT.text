@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+  
+ class Node{
+      public:
+      int data;
+      Node* left;
+      Node* right;
+      Node(int data){
+            this->data = data;this-> left = this->right = NULL;
+      }
+ };
+ Node* insertNode(Node* root,int data){
+       if(root == NULL)return new Node(data);
+       if(data > root->data)root->right = insertNode(root->right,data);
+       else if(data < root->data) root->left = insertNode(root->left,data);
+       return root;
+ }
+ bool iscompletebt(Node* root){
+  queue<Node*>q;
+  bool flag=false;
+      q.push(root);
+      while(!q.empty()){
+           Node* temp=q.front();
+                 q.pop();
+                 if(temp->left!=NULL){
+                     if(flag ==true)return false;
+                     q.push(temp->left);
+                 }
+                 else{
+                     flag=true;
+                 }if(temp->right!=NULL){
+                     if(flag==true)
+                         return false;
+                     q.push(temp->right);
+                 }else
+                 {
+                     flag=true;
+      }
+ }
+ return true;
+}
+ int main()
+ {
+  int n;
+  cin>>n;
+  while(n--){
+      Node* root=NULL;
+      int t,a;
+      cin>>t;
+      for(int i=0;i<t;i++){
+          cin>>a;
+          root=insertNode(root,a);
+      }
+       bool flag=iscompletebt(root);
+       if(flag){
+            cout<<"Yes"<<endl;
+       }
+       else{
+           cout<<"No"<<endl;
+       }
+    }
+ }

@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+  
+ class Node{
+      public:
+      int data;
+      Node* left;
+      Node* right;
+      Node(int data){
+            this->data = data;this-> left = this->right = NULL;
+      }
+ };
+ Node* insertNode(Node* root,int data){
+       if(root == NULL)return new Node(data);
+       if(data > root->data)root->right = insertNode(root->right,data);
+       else if(data < root->data) root->left = insertNode(root->left,data);
+       return root;
+ }
+ bool isbst(int arr[],int i,int N,int minvalue,int maxvalue){
+     if(i>=N)return true;
+     int curr=arr[i];
+     if(curr>=maxvalue||curr<=minvalue)return false;
+     bool lsb=isbst(arr,2*i+1,N,minvalue,curr);
+     bool rsb=isbst(arr,2*i+2,N,curr,maxvalue);
+     return lsb&&rsb;
+ }
+ int main()
+ {
+  int n;
+  cin>>n;
+  while(n--){
+      Node* root=NULL;
+      int t,a;
+      cin>>t;
+      int arr[t];
+      for(int i=0;i<t;i++){
+          cin>>a;
+          arr[i]=a;
+      }
+      
+       bool flag=isbst(arr,0,t,INT_MIN,INT_MAX);
+       if(flag){
+            cout<<"True"<<endl;
+       }
+       else{
+           cout<<"False"<<endl;
+       }
+    }
+ }
